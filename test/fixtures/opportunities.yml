@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  close_date: 2021-05-26
+  description: MyText
+  account: one
+
+two:
+  close_date: 2021-05-26
+  description: MyText
+  account: two
