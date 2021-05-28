@@ -1,6 +1,14 @@
-<% binding.pry %>
-<% @accounts.each do |account| %>
-  <h1><%= account.name %></h1>
-<% end %>
+<div class="w-7/12 h-full flex flex-col">
+  <div class="search flex w-10/12 overflow-y-auto h-8 my-4 overflow-y-auto self-center ">
+    <%= form_with url: select_accounts_path, class: "w-full", method: :get do |f| %>
+      <%= f.select :account, @accounts.map {|account| [account.name, account.id ]}, {include_blank: "Select Account"}, {class: "select-accounts w-10/12 border-black border-2"} %>
+  
+      <%= f.submit "Go", class: "w-12 h-8 bg-blue-600 text-indigo-100 text-center mx-4" %>
+    <% end %>
+    <button class="filter-accounts w-16 h-8 bg-blue-600 text-indigo-100 text-center border">Filter</button>
+  </div>
+</div>
 
-<h1>Hello</h1>
+<div class="w-3/12 h-screen text-center">
+  <h1>Side Window</h1>
+</div>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :opportunities
   resources :accounts do 
     collection do
+      get :select
     end
     
     member do
