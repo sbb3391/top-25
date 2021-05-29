@@ -1,14 +1,18 @@
 <div class="w-7/12 h-full flex flex-col">
   <div class="search flex w-10/12 overflow-y-auto h-8 my-4 overflow-y-auto self-center ">
-    <%= form_with url: select_accounts_path, class: "w-full", method: :get do |f| %>
+    <%= form_with url: select_accounts_path, class: "w-full", id: "select-accounts-form", method: :get do |f| %>
       <%= f.select :account, @accounts.map {|account| [account.name, account.id ]}, {include_blank: "Select Account"}, {class: "select-accounts w-10/12 border-black border-2"} %>
   
       <%= f.submit "Go", class: "w-12 h-8 bg-blue-600 text-indigo-100 text-center mx-4" %>
     <% end %>
     <button class="filter-accounts w-16 h-8 bg-blue-600 text-indigo-100 text-center border">Filter</button>
   </div>
+  <div id="account-show" class="w-11/12 h-52 bg-red-300 self-center flex flex-col">
+  </div>
 </div>
 
 <div class="w-3/12 h-screen text-center">
   <h1>Side Window</h1>
 </div>
+
+<%= javascript_include_tag "account_selected" %>
