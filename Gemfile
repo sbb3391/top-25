@@ -59,3 +59,5 @@ gem "csv", "~> 3.1"
 gem "pry"
 
 gem "rack-cors", "~> 1.1"
+
+gem "fast_jsonapi", "~> 1.5"

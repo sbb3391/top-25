@@ -7,7 +7,7 @@ class AccountsController < ApplicationController
 
   def select
     account = Account.find_by_id(params[:accountId])
-
-    render json: account.to_json
+    options = {include: [:opportunities]}
+    render json: AccountSerializer.new(account, options)
   end
 end

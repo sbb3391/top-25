@@ -1,4 +1,4 @@
-<div class="w-7/12 h-full flex flex-col">
+<div class="w-7/12 h-full flex flex-col" id="account-select">
   <div class="search flex w-10/12 overflow-y-auto h-8 my-4 overflow-y-auto self-center ">
     <%= form_with url: select_accounts_path, class: "w-full", id: "select-accounts-form", method: :get do |f| %>
       <%= f.select :account, @accounts.map {|account| [account.name, account.id ]}, {include_blank: "Select Account"}, {class: "select-accounts w-10/12 border-black border-2"} %>
@@ -7,12 +7,72 @@
     <% end %>
     <button class="filter-accounts w-16 h-8 bg-blue-600 text-indigo-100 text-center border">Filter</button>
   </div>
-  <div id="account-show" class="w-11/12 h-52 bg-red-300 self-center flex flex-col">
-  </div>
-</div>
-
-<div class="w-3/12 h-screen text-center">
-  <h1>Side Window</h1>
 </div>
 
 <%= javascript_include_tag "account_selected" %>
+
+<!-- Templates -->
+
+<template id="account-show">
+  <div class="w-11/12 h-64 self-center flex flex-col">
+    <div>
+
+    </div>
+    <div id="contacts" class="">
+  
+    </div>
+    <div id="tasks">
+  
+    </div>
+    <div id="opportunities" class="w-full self-center flex flex-col">
+      <h1 class="text-center">Opportunities</h1>
+      <div>
+        <table id="opportunities-table">
+          <thead class="space-x-3">
+            <th class="w-1/12"></th>
+            <th class="w-4/12 text-center">Description:</th>
+            <th class="w-2/12 text-center">Closing Date</th>
+            <th class="w-2/12 text-center">Next Task Due</th>
+            <th class="w-2/12 text-center">Last Activity Completed</th>
+          </thead>
+        </table>
+      </div>
+  
+    </div>
+    <div id="assets" class="">
+  
+    </div>
+  </div>
+</template>
+
+<template id="accounts-filter-list">
+</template>
+
+<template id="opportunity-side-widow">
+  <div class="flex flex-col">
+    <div>
+      <!-- opportunity overview -->
+      
+    </div>
+    <div>
+      <!-- opportunity tasks -->
+    </div>
+    <div>
+      <!-- opportunity assets -->
+    </div>
+  </div>
+</template>
+
+<template id="task-side-window">
+</template>
+
+<template id="popup-background">
+  <div class="popup-background">
+
+  </div>
+</template>
+
+<template>
+  <div class="popup-window-background">
+  </div>
+</template>
