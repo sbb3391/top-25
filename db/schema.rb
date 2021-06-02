@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_26_210457) do
+ActiveRecord::Schema.define(version: 2021_06_01_224117) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
@@ -35,5 +35,18 @@ ActiveRecord::Schema.define(version: 2021_05_26_210457) do
     t.index ["account_id"], name: "index_opportunities_on_account_id"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.string "description"
+    t.date "start_date"
+    t.date "due_date"
+    t.integer "account_id", null: false
+    t.integer "opportunity_id"
+    t.string "task_type"
+    t.string "task_subtype"
+    t.index ["account_id"], name: "index_tasks_on_account_id"
+    t.index ["opportunity_id"], name: "index_tasks_on_opportunity_id"
+  end
+
   add_foreign_key "opportunities", "accounts"
+  add_foreign_key "tasks", "accounts"
 end

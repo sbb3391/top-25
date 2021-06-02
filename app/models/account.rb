@@ -1,5 +1,6 @@
 class Account < ApplicationRecord
   has_many :opportunities
+  has_many :tasks
 
   def self.import(file)
     CSV.read(file, headers: true, :header_converters => :symbol, :converters => :all, quote_empty: true)

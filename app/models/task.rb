@@ -1,4 +1,4 @@
 class Task < ApplicationRecord
-  belongs_to :acccount
-  belongs_to :opportunity
+  belongs_to :account
+  belongs_to :opportunity, optional: true
 end

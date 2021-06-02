@@ -82,7 +82,9 @@ form.addEventListener("submit", function() {
         }
       })
 
-      oppDescription.addEventListener("click", showOpportunitySide(oppDescription.parentElement.id))
+      oppDescription.addEventListener("click", function() {
+        showOpportunitySide(oppDescription.parentElement.id);
+      })
 
       // add other listeners
 
@@ -93,7 +95,12 @@ form.addEventListener("submit", function() {
       function fetchOpportunity(id) {
         fetch(`http://localhost:3000/opportunities/${id}`)
         .then(resp => resp.json())
-        .then(json => showAccountDetails(json))
+        .then(json => displayOpportunitySide(json))
+      }
+
+      function displayOpportunitySide(json) {
+        const oppSideTemplate = document.querySelector("template#opportunity-side-window");
+        const oppSideDiv = oppSideTemplate.content.firstElementChild.clone(true);
       }
     }
   }
