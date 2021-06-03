@@ -100,7 +100,63 @@ form.addEventListener("submit", function() {
 
       function displayOpportunitySide(json) {
         const oppSideTemplate = document.querySelector("template#opportunity-side-window");
-        const oppSideDiv = oppSideTemplate.content.firstElementChild.clone(true);
+        const accountSelect = document.querySelector("div#account-select")
+        const oppSideDiv = oppSideTemplate.content.firstElementChild.cloneNode(true);
+        oppSideDiv.id = "opportunity-side-window"
+
+        if (!document.querySelector("div#opportunity-side-window")) {
+          accountSelect.insertAdjacentElement("afterend", oppSideDiv);
+
+          const opportunitySideDiv = document.querySelector("div#opportunity-side-window");
+
+          opportunitySideDiv.querySelector("textarea#opp-side-desc").value = json.data.attributes.description;
+          opportunitySideDiv.querySelector("input#opp-side-close-date").value = json.data.attributes.close_date;
+
+          const oppTasksOpen = document.querySelector("div#opportunity-tasks-open");
+          const oppTasksCompleted = document.querySelector("div#opportunity-tasks-completed")
+          
+          for (const task of json.included) {
+            let tr = document.createElement("tr")
+            tr.innerHTML = `
+              <td>
+                <div class="flex space-x-1">
+                  <div class="cursor-pointer">&#10003;</div>
+                  <div class="cursor-pointer">&#128203;</div>
+                </div>
+              </td>
+              <td class="text-xs w-3/12 pl-3">${task.attributes.description}</td>
+              <td class="text-center text-xs w-3/12">${task.attributes.task_type}</td>
+              <td class="text-center text-xs w-3/12">${task.attributes.task_subtype}</td>
+              <td><input type='date' class='mx-auto text-xs w-28' value='${task.attributes.due_date}' </td>
+            `
+
+            if (task.attributes.status === "open") {
+              oppTasksOpen.firstElementChild.appendChild(tr);
+            } else {
+              tr.innerHTML = `
+                <td>
+                  <div class="flex space-x-1">
+                    <div class="cursor-pointer">&#10003;</div>
+                  </div>
+                <td class="text-xs w-3/12 pl-3">${task.attributes.description}</td>
+                <td class="text-center text-xs w-3/12">${task.attributes.task_type}</td>
+                <td class="text-center text-xs w-3/12">${task.attributes.task_subtype}</td>
+                <td><input type='date' class='mx-auto text-xs w-28' value='${task.attributes.due_date}' </td>
+              `
+              oppTasksCompleted.firstElementChild.appendChild(tr);
+              addOpportunitySideBarListeners();
+            }
+          }
+          function addOpportunitySideBarListeners() {
+            const opportunitySideDiv = document.querySelector("div#opportunity-side-window");
+  
+            opportunitySideDiv.querySelector("#side-window-close").addEventListener("click", function() {
+              
+              opportunitySideDiv.remove();
+            })
+
+          }
+        }
       }
     }
   }

@@ -1,4 +1,4 @@
-<div class="w-7/12 h-full flex flex-col" id="account-select">
+<div class="w-6/12 h-full flex flex-col" id="account-select">
   <div class="search flex w-10/12 overflow-y-auto h-8 my-4 overflow-y-auto self-center ">
     <%= form_with url: select_accounts_path, class: "w-full", id: "select-accounts-form", method: :get do |f| %>
       <%= f.select :account, @accounts.map {|account| [account.name, account.id ]}, {include_blank: "Select Account"}, {class: "select-accounts w-10/12 border-black border-2"} %>
@@ -48,14 +48,64 @@
 <template id="accounts-filter-list">
 </template>
 
-<template id="opportunity-side-widow">
-  <div class="flex flex-col">
-    <div>
-      <!-- opportunity overview -->
-      
+<template id="opportunity-side-window">
+  <div class="flex flex-col w-4/12 h-screen">
+    <div class="absolute top-0 right-0 cursor-pointer" id="side-window-close">&#10006;</div>
+    <div class="flex flex-col my-3">
+      <div class="flex flex-col">
+        <label class="text-center mb-1">Description</label>
+        <textarea class="w-8/12 mx-auto text-center" id="opp-side-desc"></textarea>
+      </div>
+      <div class="flex flex-wrap w-10/12 mx-auto">
+        <div class="flex flex-col mb-3 w-5/12">
+          <label class="text-center mb-1">Close Date</label>
+          <input class= "w-36 mx-auto"id="opp-side-close-date" type="date">
+        </div>
+        <div class="flex flex-col mb-3 w-5/12">
+          <label class="text-center mb-1">Next Task Due</label>
+          <h2 class="text-center">Due Date</h2>
+        </div>
+        <div class="flex flex-col mb-3 w-5/12">
+          <label class="text-center mb-1">Close Date</label>
+          <input class= "w-36 mx-auto"id="opp-side-close-date" type="date">
+        </div>
+        <div class="flex flex-col mb-3 w-5/12">
+          <label class="text-center mb-1">Close Date</label>
+          <input class= "w-36 mx-auto"id="opp-side-close-date" type="date">
+        </div>
+      </div>
     </div>
-    <div>
-      <!-- opportunity tasks -->
+    <h2 class="text-center bg-blue-300 text-black font-bold">Open Tasks</h2>
+    <div id="opportunity-tasks-open" class="mb-5">
+      <table>
+        <thead>
+          <th>
+            <div class="flex">
+              <div class="cursor-pointer mr-0">&#x2b;</div>
+            </div>
+          </th>
+          <th class="text-center text-xs w-3/12">Description</th>
+          <th class="text-center text-xs w-2/12">Type</th>
+          <th class="text-center text-xs w-2/12">Subtype</th>
+          <th class="text-center text-xs w-3/12">Due Date</th>
+        </thead>
+      </table>
+    </div>
+    <h2 class="text-center bg-blue-300 text-black font-bold">Completed Tasks</h2>
+    <div id="opportunity-tasks-completed">
+      <table>
+        <thead>
+          <th>
+            <div class="flex">
+              <div class="cursor-pointer mr-0">&#x2b;</div>
+            </div>
+          </th>
+          <th class="text-center text-xs w-3/12">Description</th>
+          <th class="text-center text-xs w-3/12">Type</th>
+          <th class="text-center text-xs w-3/12">Subtype</th>
+          <th class="text-center text-xs w-3/12">Due Date</th>
+        </thead>
+      </table>
     </div>
     <div>
       <!-- opportunity assets -->
