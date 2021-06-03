@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :accounts do 
     collection do
       post :select
+      get :testing_css
     end
     
     member do

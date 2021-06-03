@@ -10,4 +10,11 @@ class AccountsController < ApplicationController
     options = {include: [:opportunities]}
     render json: AccountSerializer.new(account, options)
   end
+
+  def testing_css
+
+    respond_to do |format|
+      format.html { render "accounts/testing_css", :layout => false  }
+    end
+  end
 end

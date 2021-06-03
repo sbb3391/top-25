@@ -10,17 +10,19 @@
   </head>
 
   <body>
-    <div class="w-full flex" id="main-page">
-      <div class="w-2/12 h-screen bg-blue-400">
-      </div>
+    <div>
+      <div class="z-0 relative w-full flex filter" id="main-page">
+        <div class="w-2/12 h-screen bg-blue-400"></div>
     
-
-      <%= yield %>
+        <%= yield %>
+      </div>
+      <div id="background" class="z-10 absolute top-0 w-full h-screen hidden">
+      </div>
     </div>
-
     <template id="grey-background">
-      <div class="bg-blue-200 flex flex-col w-1/12 h-62 z-30">
-
+      <div class="bg-blue-200 flex flex-col w-8/12 h-62 z-30">
+        <h1>aslkdfjads;</h1>
+        <h1>adsj;f;dsklfjdskl;</h1>
       </div>
     </template>
   </body>

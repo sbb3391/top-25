@@ -9,5 +9,5 @@ function showGreyBackground() {
 
   const background = BackgroundTemplate.content.firstElementChild.cloneNode(true);
 
-  document.querySelector("div#main-page").insertAdjacentElement("afterbegin", background);
+  document.querySelector("div#main").insertAdjacentElement("afterbegin", background);
 }
