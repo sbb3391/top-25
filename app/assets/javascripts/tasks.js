@@ -59,6 +59,7 @@ function populateTaskForm() {
   const dueDate = taskForm.querySelector("#task-due-date");
   const taskType = taskForm.querySelector("#task-type");
   const taskSubtype = taskForm.querySelector("#task-sub-type");
+  const accounts = taskForm.querySelector("#task-accounts");
   let options = { year: "numeric", month: "2-digit", day: "2-digit"}
 
   startDate.value = stringDate();
@@ -67,6 +68,11 @@ function populateTaskForm() {
   taskType.addEventListener("change", function() {
     getSubtaskTypes(event, taskSubtype);
   });
+  accounts.addEventListener("change", function() {
+    handleAccountSelection(event, accounts);
+  })
+
+
 }
 
 function stringDate() {
@@ -109,4 +115,41 @@ function getSubtaskTypes(e, ele) {
   }
 
   ele.removeAttribute("disabled");
+}
+
+function handleAccountSelection(e, ele) {
+  const target = e.target;
+
+  const selectedOptionId = ele.children[target.selectedIndex].dataset.id;
+
+  fetchAccount(selectedOptionId)
+
+  function fetchAccount(id) {
+    fetch(`http://localhost:3000/accounts/${selectedOptionId}`)
+    .then(resp => resp.json())
+    .then(json => addOpportunitiesForAccount(json))
+  }
+
+  function addOpportunitiesForAccount(json) {
+    const opportunities = json.included
+    const selectOpportunities = document.querySelector("select#account-opportunities");
+
+    while (selectOpportunities.lastElementChild) {
+      selectOpportunities.lastElementChild.remove();
+    }
+
+    let emptyOption = document.createElement("option");
+    emptyOption.value =  "-- select an option --";
+    emptyOption.innerText =  "-- select an option --"; 
+    selectOpportunities.appendChild(emptyOption); 
+
+    for (const opp of opportunities) {
+      let description = opp.attributes.description
+      let newOption = document.createElement("option")
+      newOption.setAttribute("data-id", opp.id)
+      newOption.appendChild(document.createTextNode(description));
+      selectOpportunities.appendChild(newOption);
+
+    }
+  }
 }

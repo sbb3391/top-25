@@ -17,4 +17,10 @@ class AccountsController < ApplicationController
       format.html { render "accounts/testing_css", :layout => false  }
     end
   end
+
+  def show
+    account = Account.find_by_id(params[:id])
+    options = {include: [:opportunities]}
+    render json: AccountSerializer.new(account, options)
+  end
 end

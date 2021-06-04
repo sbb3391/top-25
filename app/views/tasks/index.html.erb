@@ -21,7 +21,7 @@
         <select id="task-accounts" class="w-10/12">
           <option hidden disabled selected value> -- select an option -- </option>
           <% @accounts.each do |account| %>
-            <option><%= account.name %></option>
+            <option data-id="<%= account.id %>"><%= account.name %></option>
           <% end %>
         </select>
       </div>
