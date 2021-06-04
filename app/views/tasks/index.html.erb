@@ -18,39 +18,46 @@
     <div class="flex flex-col space-y-5 mt-5 justify-center">
       <div>
         <label>Account</label><br>
-        <select class="w-10/12"></select>
+        <select id="task-accounts" class="w-10/12">
+          <option hidden disabled selected value> -- select an option -- </option>
+          <% @accounts.each do |account| %>
+            <option><%= account.name %></option>
+          <% end %>
+        </select>
       </div>
       <div>
         <label class="text-center">Description</label><br>
-        <input type="text" class="w-10/12">
+        <input id="task-description"type="text" class="w-10/12">
       </div>
       <div class="flex space-x-4">
         <div>
           <label>Start Date</label><br>
-          <input type="date">
+          <input id="task-start-date" type="date">
         </div>
         <div>
           <label>Due Date</label><br>
-          <input type="date">
+          <input id="task-due-date" type="date">
         </div>
       </div>
       <div class="flex space-x-4">
         <div>
           <label>Task Type</label><br>
-          <select class="w-56"></select>
+          <select id="task-type" class="w-56">
+            <option hidden disabled selected value> -- select an option -- </option>
+          </select>
         </div>
         <div>
           <label>Subtype</label><br>
-          <select class="w-56" disabled></select>
+          <select id="task-sub-type" class="w-56" disabled></select>
         </div>
       </div>
       <div>
         <label>Opportunity</label>
-        <select class="w-10/12"></select>
+        <select id="account-opportunities" class="w-10/12"></select>
       </div>
       <div>
         <label>Note</label><br>
-        <textarea rows="3" class="w-11/12 focus:outline-none"></textarea>
+        <textarea id="task-note" rows="3" class="w-11/12 focus:outline-none"></textarea>
       </div>
     </div>
   </div>
