@@ -1,13 +1,35 @@
-const filterButton = document.querySelector(".filter-accounts")
+const filterButton = document.querySelector(".new-task")
 
 filterButton.addEventListener("click", function() {
   showGreyBackground();
+  showTaskForm();
 })
 
 function showGreyBackground() {
-  const BackgroundTemplate = document.querySelector("template#grey-background");
+  const formBackground = document.querySelector("div#form-background");
+  const mainPage = document.querySelector("div#main-page");
 
-  const background = BackgroundTemplate.content.firstElementChild.cloneNode(true);
+  formBackground.classList.remove("hidden");
+  mainPage.classList.add("filter", "blur-md");
+}
 
-  document.querySelector("div#main").insertAdjacentElement("afterbegin", background);
+function showTaskForm() {
+  const grayBackground = document.querySelector("div#gray-background");
+  const formBackground = document.querySelector("div#form-background")
+  const taskFormTemplate = document.querySelector("template#new-task-form");
+  const taskForm = taskFormTemplate.content.firstElementChild.cloneNode(true);
+  const mainPage = document.querySelector("div#main-page");
+
+  grayBackground.appendChild(taskForm);
+
+  formBackground.addEventListener("click", function() {
+    if (event.target === formBackground) {
+      while (grayBackground.lastElementChild) {
+        grayBackground.lastElementChild.remove();
+      }
+  
+      formBackground.classList.add("hidden");
+      mainPage.classList.remove("filter", "blur-md");
+    }
+  })
 }

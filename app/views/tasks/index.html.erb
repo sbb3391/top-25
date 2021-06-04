@@ -1,13 +1,60 @@
 <div class="w-6/12 h-full flex flex-col" id="account-select">
-  <div class="search flex w-10/12 overflow-y-auto h-8 my-4 overflow-y-auto self-center ">
-    <%= form_with url: select_accounts_path, class: "w-full", id: "select-accounts-form", method: :get do |f| %>
-      <%= f.select :account, @accounts.map {|account| [account.name, account.id ]}, {include_blank: "Select Account"}, {class: "select-accounts w-10/12 border-black border-2"} %>
+  <div class="search flex flex-col w-10/12 overflow-y-auto my-4 overflow-y-auto self-center ">
+    <%= form_with url: select_accounts_path, class: "mb-4", id: "select-accounts-form", method: :get do |f| %>
+      <%= f.select :account, @accounts.map {|account| [account.name, account.id ]}, {include_blank: "Select Account"}, {class: "select-accounts w-9/12 border-black border-2"} %>
   
-      <%= f.submit "Go", class: "w-12 h-8 bg-blue-600 text-indigo-100 text-center mx-4" %>
+      <%= f.submit "Go", class: "w-12 h-8 bg-blue-600 text-indigo-100 text-center" %>
     <% end %>
-    <button class="filter-accounts w-16 h-8 bg-blue-600 text-indigo-100 text-center border">Filter</button>
+    <div class="flex">
+      <button class="filter-tasks w-28 h-8 bg-blue-600 text-indigo-100 text-center border">Filter Tasks</button>
+      <button class="new-task w-28 h-8 bg-blue-600 text-indigo-100 text-center border">New Task</button>
+    </div>
   </div>
 </div>
+
+<template id="new-task-form">
+  <div>
+    <h1 class="text-center">New Task</h1>
+    <div class="flex flex-col space-y-5 mt-5 justify-center">
+      <div>
+        <label>Account</label><br>
+        <select class="w-10/12"></select>
+      </div>
+      <div>
+        <label class="text-center">Description</label><br>
+        <input type="text" class="w-10/12">
+      </div>
+      <div class="flex space-x-4">
+        <div>
+          <label>Start Date</label><br>
+          <input type="date">
+        </div>
+        <div>
+          <label>Due Date</label><br>
+          <input type="date">
+        </div>
+      </div>
+      <div class="flex space-x-4">
+        <div>
+          <label>Task Type</label><br>
+          <select class="w-56"></select>
+        </div>
+        <div>
+          <label>Subtype</label><br>
+          <select class="w-56" disabled></select>
+        </div>
+      </div>
+      <div>
+        <label>Opportunity</label>
+        <select class="w-10/12"></select>
+      </div>
+      <div>
+        <label>Note</label><br>
+        <textarea rows="3" class="w-11/12 focus:outline-none"></textarea>
+      </div>
+    </div>
+  </div>
+</template>
 
 
 
