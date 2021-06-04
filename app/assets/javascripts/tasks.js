@@ -21,6 +21,7 @@ newTaskButton.addEventListener("click", function() {
   showGreyBackground();
   showTaskForm();
   populateTaskForm();
+  handleNewTaskFormSubmission();
 })
 
 function showGreyBackground() {
@@ -152,4 +153,35 @@ function handleAccountSelection(e, ele) {
 
     }
   }
+}
+
+function handleNewTaskFormSubmission() {
+  const newTaskFormElement = document.querySelector("div#task-form").querySelector("form");
+  
+  newTaskFormElement.addEventListener("submit", taskFormSubmit)
+}
+
+function taskFormSubmit() {
+  event.preventDefault();
+  bodyOptions = {
+    id: "Options"
+  }
+  postTaskForm(bodyOptions);
+}
+
+function postTaskForm(bodyOptions) {
+  const token = document.getElementsByName('csrf-token')[0].content;
+  const options = {
+    method: "POST",
+    body: JSON.stringify(bodyOptions),
+    headers: {
+      'Accept': 'application/json',
+      "Content-type": "application/json",
+      "X-CSRF-Token": token
+    }
+  }
+  fetch("http://localhost:3000/tasks", options)
+  .then(resp => resp.json())
+  .then(json => console.log(json))
+
 }
