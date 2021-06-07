@@ -1,21 +1,32 @@
-<div class="w-6/12 h-full flex flex-col" id="account-select">
-  <div class="search flex flex-col w-10/12 overflow-y-auto my-4 overflow-y-auto self-center ">
-    <%= form_with url: select_accounts_path, class: "mb-4", id: "select-accounts-form", method: :get do |f| %>
-      <%= f.select :account, @accounts.map {|account| [account.name, account.id ]}, {include_blank: "Select Account"}, {class: "select-accounts w-9/12 border-black border-2"} %>
-  
-      <%= f.submit "Go", class: "w-12 h-8 bg-blue-600 text-indigo-100 text-center" %>
-    <% end %>
-    <div class="flex">
-      <button class="filter-tasks w-28 h-8 bg-blue-600 text-indigo-100 text-center border">Filter Tasks</button>
-      <button class="new-task w-28 h-8 bg-blue-600 text-indigo-100 text-center border">New Task</button>
+<div class="w-6/12 h-screen flex flex-col overflow-y-auto">
+  <div class="w-full h-full flex flex-col space-y-6" id="account-select">
+    <div class="search flex flex-col w-10/12 overflow-y-auto my-4 overflow-y-auto self-center ">
+      <%= form_with url: select_accounts_path, class: "mb-4", id: "select-accounts-form", method: :get do |f| %>
+        <%= f.select :account, @accounts.map {|account| [account.name, account.id ]}, {include_blank: "Select Account"}, {class: "select-accounts w-9/12 border-black border-2"} %>
+    
+        <%= f.submit "Go", class: "w-12 h-8 bg-blue-600 text-indigo-100 text-center" %>
+      <% end %>
+      <div class="flex">
+        <button class="filter-tasks w-28 h-8 bg-blue-600 text-indigo-100 text-center border">Filter Tasks</button>
+        <button class="new-task w-28 h-8 bg-blue-600 text-indigo-100 text-center border">New Task</button>
+      </div>
+    </div>
+    <div class="w-11/12 h-24 place-self-center">
+      <table class="border-2 border-black" id="tasks-table">
+        <thead class="bg-blue-400">
+          <td class="w-48 text-center text-sm">Description</td>
+          <td class="w-24 text-center text-sm">Due Date</td>
+          <td class="w-24 text-center text-sm">Status</td>
+          <td class="w-24 text-center text-sm">Type</td>
+          <td class="w-24 text-center text-sm">Subtype</td>
+          <td class="w-24 text-center text-sm">Notes</td>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
     </div>
   </div>
-  <!-- <div id="search-form">
-    <form>
-      <input type="text" id="query-text">
-      <input type="submit">
-    </form>
-  </div> -->
 </div>
 
 <template id="new-task-form">

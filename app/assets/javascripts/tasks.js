@@ -540,6 +540,28 @@ function fetchResetTaskFilterSession(event) {
 }
 
 function populateFilterResults(json) {
+  const table = document.querySelector("table#tasks-table")
+
+  const tasks = json.data
+  const body = table.querySelector("tbody")
+
+  while (body.lastElementChild) {
+    body.lastElementChild.remove();
+  }
+
+  for (const task of tasks) {
+
+    let tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="w-48 text-center text-xs">${task.attributes.description}</td>
+      <td class="w-24 text-center text-sm"><input type="date" class="w-32" value='${task.attributes.due_date}'</td>
+      <td class="w-24 text-center text-sm">${task.attributes.status}</td>
+      <td class="w-24 text-center text-sm">${task.attributes.task_type}</td>
+      <td class="w-24 text-center text-sm">${task.attributes.task_subtype}</td>
+      <td class="w-24 text-center text-sm"></td>
+    `
+    body.appendChild(tr);
+  }
   
 }
 
