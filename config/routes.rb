@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :tasks
+  resources :tasks do 
+    collection do
+      post :search
+      post :filter
+      get :filter_check
+      get :remove_filter
+    end
+  end
+
   resources :opportunities
   resources :accounts do 
     collection do
