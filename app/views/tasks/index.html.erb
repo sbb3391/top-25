@@ -66,26 +66,42 @@
 <template id="filter-tasks-form">
   <div>
     <form id="filter-tasks-form">
-      <h1 class="text-center">Filter Tasks</h1>
       <div class="flex flex-col space-y-5 mt-5 justify-center">
         <div class="space-y-4" id="task-date-filters">
-          <label>Date Filters</label>
+          <label class="text-sm">Date Filters</label>
           <div>
             <input type="radio" name="due-date">
-            <span id="due-on">Is due: </span>
-            <input type="date">
+            <span id="due-on" class="text-sm">Is due: </span>
+            <input type="date" class="text-sm pl-3 w-36">
           </div>
           <div>
             <input type="radio" name="due-date">
-            <span id="due-before">Is due before: </span>
-            <input type="date">
+            <span id="due-before" class="text-sm">Is due before: </span>
+            <input type="date" class="text-sm pl-3 w-36">
           </div>
           <div>
             <input type="radio" name="due-date">
-            <span id="due-between-1">Is due between: </span>
-            <input type="date">
-            <span id="due-between-2">& </span>
-            <input type="date">
+            <span id="due-between-1" class="text-sm">Is due between: </span>
+            <input type="date" class="text-sm pl-3 w-36">
+            <span id="due-between-2" class="text-sm">& </span>
+            <input type="date" class="text-sm pl-3 w-36">
+          </div>
+        </div>
+        <div class="w-48 flex flex-col space-y-2">
+          <label>Status</label>
+          <div class="flex justify-between">
+            <div>
+              <input type="radio" name="status" checked="true">
+              <label class="text-sm">All</label>
+            </div>
+            <div>
+              <input type="radio" name="status">
+              <label class="text-sm">Active</label>
+            </div>
+            <div>
+              <input type="radio" name="status">
+              <label class="text-sm">Inactive</label>
+            </div>
           </div>
         </div>
         <div class="space-y-1 flex justify-around text-sm" id="task-type-filter-section">
@@ -106,10 +122,17 @@
             </div>
           </div>
         </div>
-        <input type="submit" value="Filter" class="bg-blue-400 border-3 border-black rounded-md cursor-pointer">
+        <div class="w-80 flex mx-24">
+          <input type="submit" value="Filter" class="bg-blue-400 border-3 border-black rounded-md cursor-pointer h-8 w-80">
+        </div>
       </div>
     </form>
-    <button class="bg-blue-400 border-3 border-black rounded-md" id="reset-task-filter">Reset Filters</button>
+    <div class="flex justify-center">
+      <div class="w-80">
+        <button class="bg-blue-400 border-3 border-black rounded-md my-2 mx-auto h-8 w-80 align-center" id="reset-task-filter">Reset Filters</button>
+      </div>
+    </div>
+  
   </div>
   
 </template>

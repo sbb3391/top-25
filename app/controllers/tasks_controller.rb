@@ -36,7 +36,7 @@ class TasksController < ApplicationController
     render json: message
   end
 
-  def filter
+  def filter_session
     session[:taskFilter] ? session.delete("taskFilter") : nil 
 
     session["taskFilter"] = {
@@ -49,6 +49,26 @@ class TasksController < ApplicationController
     params[:subtypeFilters].map {|s| session[:taskFilter][:subtypeFilters].push(s) }
     params[:otherFilters].map {|o| session[:taskFilter][:otherFilters].push(o)}
 
-    render json: session[:taskFilter]
+    filter = session[:taskFilter]
+
+    if !filter[:dateFilter].empty?
+      if filter[:dateFilter]["due-on"]
+        tasks = Task.filter_by_due_date_on(filter[:dateFilter]["due-on"])
+      elsif filter[:dateFilter]["due-before"]
+        tasks = Task.filter_by_due_date_before(filter[:dateFilter]["due-before"])
+      elsif filter[:dateFilter]["due-between-1"]
+        arr = filter[:dateFilter].values
+        tasks = Task.filter_by_due_date_between(arr[0], arr[1])
+      end
+    else 
+      tasks = Task.all
+    end
+
+
+    if !filter[:subtypeFilters].empty?
+      tasks = tasks.filter_by_subtype(filter[:subtypeFilters])
+    end
+
+    render json: TaskSerializer.new(tasks)
   end
 end

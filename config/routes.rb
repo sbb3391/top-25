@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   resources :tasks do 
     collection do
       post :search
-      post :filter
+      post :filter_session
       get :filter_check
+      get :filter_tasks
       get :remove_filter
     end
   end

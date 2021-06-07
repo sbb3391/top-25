@@ -441,12 +441,12 @@ function fetchFilterTasks(event) {
       'X-CSRF-Token': token
     }
   }
-  fetch("http://localhost:3000/tasks/filter", options)
+  fetch("http://localhost:3000/tasks/filter_session", options)
   .then(resp => resp.json())
-  .then(json => console.log(json))
+  .then(function(data) {
+    populateFilterResults(data);
+  })
 }
-
-
 
 function taskFilterFormBodyInfo() {
   let bodyObject = {
@@ -537,6 +537,10 @@ function fetchResetTaskFilterSession(event) {
   fetch("http://localhost:3000/tasks/remove_filter")
   .then(resp => resp.json())
   .then(json => console.log(json))
+}
+
+function populateFilterResults(json) {
+  
 }
 
 // function handleNewTaskFormSubmission() {
