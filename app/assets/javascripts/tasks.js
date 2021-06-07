@@ -241,6 +241,7 @@ function populateFilterTasksFormStandard() {
 }
 
 function populateFilterTasksFormFromSession(json) {
+  formatInputDates();
   populateDateFilterFromSession(json);
   addTypeAndSubtypeInputs();
   addListenersForTypeInputs();
